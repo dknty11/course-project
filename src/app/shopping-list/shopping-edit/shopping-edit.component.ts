@@ -1,6 +1,6 @@
 import {Component, ElementRef, EventEmitter, OnInit, Output, ViewChild} from '@angular/core';
 
-import {Ingredient} from '../../share/ingredient.model';
+import {ArrayTest, Ingredient} from '../../share/ingredient.model';
 
 @Component({
   selector: 'app-shopping-edit',
@@ -11,6 +11,7 @@ export class ShoppingEditComponent implements OnInit {
   @ViewChild('nameInput') nameInputRef: ElementRef;
   @ViewChild('amountInput') amountInputRef: ElementRef;
   @Output() ingredientAdded = new EventEmitter<Ingredient>();
+  @Output() testAdded = new EventEmitter<ArrayTest>();
 
   constructor() { }
 
@@ -22,6 +23,13 @@ export class ShoppingEditComponent implements OnInit {
     const ingAmount = this.amountInputRef.nativeElement.value;
     const newIngredient = new Ingredient(ingName, ingAmount);
     this.ingredientAdded.emit(newIngredient);
+  }
+  onAddItemTest() {
+    const ingName = this.nameInputRef.nativeElement.value;
+    const ingAmount = this.amountInputRef.nativeElement.value;
+    // test adding even emitter
+    const newIngredient1 = new ArrayTest(ingName, ingAmount);
+    this.testAdded.emit(newIngredient1);
   }
 
 }
